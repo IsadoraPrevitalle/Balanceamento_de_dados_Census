@@ -1,4 +1,4 @@
-#Aplicando SMOTE na Base de Dados do Censo
+# Aplicando SMOTE na Base de Dados do Censo
 
 Este projeto visa aplicar a técnica de oversampling **SMOTE (Synthetic Minority Over-sampling Technique)** para balancear uma base de dados desbalanceada. O foco é ajustar a distribuição da variável `income`, que classifica indivíduos como ganhando `<=50K` ou `>50K` por ano, com predominância da classe `<=50K`.
 
