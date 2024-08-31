@@ -58,6 +58,16 @@ print('X_over', X_over.shape)
 print('Y_censu', np.unique(Y_censu, return_counts=True)) #Qtd de valores antes aplicação SMOTE
 print('Y_over', np.unique(y_over, return_counts=True)) #Qtd de valores após aplicação SMOTE
 
-from sklearn.model_selection import train_test_split
 
-X_censu_treinamento_over, X_censu_teste_over, y_censu_treinamento_over, y_teste_treinamento_over = train_test_split(X_over, y_over, test_size=0.15)
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+X_censu_treinamento_over, X_censu_teste_over, y_censu_treinamento_over, y_censu_teste_over = train_test_split(X_over, y_over, test_size=0.15, random_state=0)
+
+random_forest_census = RandomForestClassifier(criterion='entropy', min_samples_leaf=1, min_samples_split=5, n_estimators=100)
+random_forest_census.fit(X_censu_treinamento_over, y_censu_treinamento_over)
+
+previsoes = random_forest_census.predict(X_censu_teste_over)
+print(accuracy_score(y_censu_teste_over, previsoes))
+print(classification_report(y_censu_teste_over, previsoes))
